@@ -18,7 +18,7 @@ provider:
 package:
     exclude:
         - node_modules/**
-        - venv/*
+        - venv/**
         - .env
         - package-lock.json
         - package.json

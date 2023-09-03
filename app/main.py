@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pymongo
 import os
 import json
@@ -10,9 +12,9 @@ def lambda_handler(event, context):
     image_key = ''
 
     for data in event:
-        image_key = data['key']
-        db.cakes.update_one({'image.key': image_key}, {'$set': {data['model']: data['vector']}})
-    
+        image_key = data['key'].split('/')[-1]
+        db.cakes.update_one({'image.converte_name': image_key}, {'$set': {data['model']: data['vector']}})
+
     return {
-        'result': json.loads(json_util.dumps(db.cakes.find_one({'image.key': image_key}))),
+        'result': json.loads(json_util.dumps(db.cakes.find_one({'image.converte_name': image_key}))),
     }
